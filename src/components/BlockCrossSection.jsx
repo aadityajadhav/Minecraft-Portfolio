@@ -1,9 +1,10 @@
-import React, { useState, useMemo } from 'react'
+import React, { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import BlockTexture from './BlockTexture'
+import { useMining } from '../contexts/MiningContext'
 
-const BlockCrossSection = () => {
-  const [minedBlocks, setMinedBlocks] = useState(new Set())
+const BlockCrossSection = ({ side = 'left' }) => {
+  const { oreCount, caveUnlocked, addOre, minedBlocks, setMinedBlocks } = useMining()
   
   // Grid configuration - 10x20 blocks
   const gridWidth = 10
@@ -11,13 +12,13 @@ const BlockCrossSection = () => {
   
   // Block types with weights for randomization (reduced ore chances to 5-10%)
   const blockTypes = [
-    { type: 'cobblestone', weight: 0.75 },
-    { type: 'coal', weight: 0.08 },
-    { type: 'iron', weight: 0.06 },
-    { type: 'gold', weight: 0.04 },
-    { type: 'emerald', weight: 0.03 },
-    { type: 'diamond', weight: 0.02 },
-    { type: 'redstone', weight: 0.02 }
+    { type: 'cobblestone', weight: 0.75, isOre: false },
+    { type: 'coal', weight: 0.08, isOre: true },
+    { type: 'iron', weight: 0.06, isOre: true },
+    { type: 'gold', weight: 0.04, isOre: true },
+    { type: 'emerald', weight: 0.03, isOre: true },
+    { type: 'diamond', weight: 0.02, isOre: true },
+    { type: 'redstone', weight: 0.02, isOre: true }
   ]
   
   // Generate random block types for the grid - ONLY ONCE on page load
@@ -31,10 +32,10 @@ const BlockCrossSection = () => {
         
         if (row === 0) {
           // Top row: grass blocks
-          blockType = { type: 'grass', weight: 1 }
+          blockType = { type: 'grass', weight: 1, isOre: false }
         } else if (row === 1) {
           // Second row: dirt blocks
-          blockType = { type: 'dirt', weight: 1 }
+          blockType = { type: 'dirt', weight: 1, isOre: false }
         } else {
           // All other rows: random blocks based on weights
           const rand = Math.random()
@@ -58,13 +59,25 @@ const BlockCrossSection = () => {
   }, []) // Empty dependency array means this only runs once
   
   const handleBlockClick = (index) => {
-    if (!minedBlocks.has(index)) {
-      setMinedBlocks(prev => new Set([...prev, index]))
+    if (caveUnlocked || minedBlocks.has(`${side}-${index}`)) return
+    
+    const block = blockGrid[index]
+    const newMinedBlocks = new Set([...minedBlocks, `${side}-${index}`])
+    setMinedBlocks(newMinedBlocks)
+    
+    // Count ores - cave unlock is now handled centrally in MiningContext
+    if (block.isOre) {
+      addOre()
     }
   }
   
+  // If cave is unlocked and all blocks are mined, show nothing
+  if (caveUnlocked && Array.from(minedBlocks).filter(block => block.startsWith(`${side}-`)).length === gridWidth * gridHeight) {
+    return <div className="h-full w-full" />
+  }
+  
   return (
-    <div className="h-full bg-minecraft-deepslate w-full">
+    <div className="h-full w-full">
       <div 
         className="grid w-full h-full"
         style={{
@@ -76,7 +89,7 @@ const BlockCrossSection = () => {
         }}
       >
         {blockGrid.map((block, index) => {
-          const isMined = minedBlocks.has(index)
+          const isMined = minedBlocks.has(`${side}-${index}`)
           
           return (
             <motion.div
@@ -97,6 +110,7 @@ const BlockCrossSection = () => {
               <BlockTexture 
                 type={block.type} 
                 isMined={isMined}
+                caveUnlocked={caveUnlocked}
                 size="w-full h-full"
               />
             </motion.div>

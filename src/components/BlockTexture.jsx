@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BlockTexture = ({ type, size = "w-full h-full", isMined = false }) => {
+const BlockTexture = ({ type, size = "w-full h-full", isMined = false, caveUnlocked = false }) => {
   const getTextureStyle = (blockType) => {
     const textures = {
       grass: {
@@ -79,29 +79,52 @@ const BlockTexture = ({ type, size = "w-full h-full", isMined = false }) => {
   }
 
   if (isMined) {
-    return (
-      <div 
-        className={`${size} minecraft-block bg-cover bg-center`}
-        style={{
-          backgroundImage: "url('/block-textures/deepslate.png')",
-          backgroundColor: '#2F2F2F',
-          backgroundSize: 'cover',
-          width: '100%',
-          height: '100%',
-          margin: '0',
-          padding: '0'
-        }}
-      />
-    )
+    if (caveUnlocked) {
+      // After cave unlock: show cave background
+      return (
+        <div 
+          className={`${size}`}
+          style={{
+            backgroundImage: "url('/cave.png')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '100%',
+            height: '100%',
+            margin: '0',
+            padding: '0',
+            border: '0'
+          }}
+        />
+      )
+    } else {
+      // Before cave unlock: show deepslate
+      return (
+        <div 
+          className={`${size}`}
+          style={{
+            backgroundImage: "url('/block-textures/deepslate.png')",
+            backgroundColor: '#2F2F2F',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            width: '100%',
+            height: '100%',
+            margin: '0',
+            padding: '0',
+            border: '0'
+          }}
+        />
+      )
+    }
   }
 
   return (
     <div 
-      className={`${size} minecraft-block bg-cover bg-center`}
+      className={`${size}`}
       style={{
         ...getTextureStyle(type),
         margin: '0',
-        padding: '0'
+        padding: '0',
+        border: '0'
       }}
     />
   )
