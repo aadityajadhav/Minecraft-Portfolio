@@ -1,9 +1,18 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { useMining } from '../contexts/MiningContext'
 
 const ContentSection = () => {
+  const { caveUnlocked } = useMining()
+  
   return (
-    <div className="min-h-screen bg-minecraft-deepslate p-8">
+    <motion.div 
+      className="min-h-screen p-8"
+      style={{
+        backgroundColor: caveUnlocked ? 'transparent' : '#2F2F2F',
+        transition: 'background-color 1s ease-in-out'
+      }}
+    >
       {/* About Me Section */}
       <motion.section
         initial={{ opacity: 0, y: 50 }}
@@ -14,13 +23,19 @@ const ContentSection = () => {
         <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6">
           ABOUT ME
         </h2>
-        <div className="bg-minecraft-stone p-6 rounded-lg border-2 border-gray-800">
+        <motion.div 
+          className="p-6 rounded-lg border-2 border-gray-800"
+          style={{
+            backgroundColor: caveUnlocked ? 'rgba(117, 117, 117, 0.7)' : '#757575',
+            transition: 'background-color 1s ease-in-out'
+          }}
+        >
           <p className="text-lg text-white leading-relaxed">
             I'm a passionate developer who loves creating interactive experiences. 
             When I'm not coding, you can find me exploring virtual worlds and 
             building pixelated adventures.
           </p>
-        </div>
+        </motion.div>
       </motion.section>
       
       {/* Projects Section */}
@@ -42,7 +57,11 @@ const ContentSection = () => {
             <motion.div
               key={index}
               whileHover={{ scale: 1.02 }}
-              className="bg-minecraft-stone p-6 rounded-lg border-2 border-gray-800 cursor-pointer hover:border-minecraft-grass transition-colors"
+              className="p-6 rounded-lg border-2 border-gray-800 cursor-pointer hover:border-minecraft-grass transition-colors"
+              style={{
+                backgroundColor: caveUnlocked ? 'rgba(117, 117, 117, 0.7)' : '#757575',
+                transition: 'background-color 1s ease-in-out'
+              }}
             >
               <h3 className="minecraft-text text-2xl text-white mb-2">
                 {project.title}
@@ -64,7 +83,13 @@ const ContentSection = () => {
         <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6">
           CONTACT ME
         </h2>
-        <div className="bg-minecraft-stone p-6 rounded-lg border-2 border-gray-800">
+        <motion.div 
+          className="p-6 rounded-lg border-2 border-gray-800"
+          style={{
+            backgroundColor: caveUnlocked ? 'rgba(117, 117, 117, 0.7)' : '#757575',
+            transition: 'background-color 1s ease-in-out'
+          }}
+        >
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <span className="minecraft-text text-minecraft-grass">Email:</span>
@@ -79,9 +104,9 @@ const ContentSection = () => {
               <span className="text-white">linkedin.com/in/minecraft-dev</span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </motion.section>
-    </div>
+    </motion.div>
   )
 }
 

@@ -38,7 +38,7 @@ const AppContent = () => {
         </div>
         
         {/* Main Content Column */}
-        <div className="w-2/4 min-h-screen bg-black relative z-10">
+        <div className="w-2/4 min-h-screen relative z-10">
           <ContentSection />
         </div>
         
