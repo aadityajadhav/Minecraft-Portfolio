@@ -20,7 +20,7 @@ const ContentSection = () => {
         transition={{ duration: 0.8 }}
         className="mb-16"
       >
-        <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6">
+        <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6 text-center">
           ABOUT ME
         </h2>
         <motion.div 
@@ -45,14 +45,14 @@ const ContentSection = () => {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="mb-16"
       >
-        <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6">
+        <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6 text-center">
           PROJECTS
         </h2>
         <div className="grid gap-6">
           {[
-            { title: "Block Adventure", description: "A 3D platformer game built with Three.js" },
-            { title: "Pixel Art Creator", description: "Web-based pixel art editor with real-time collaboration" },
-            { title: "Minecraft Clone", description: "Voxel-based world generator with procedural terrain" }
+            { title: "EcoMind", description: "AI Research Assistant for Environmental Research Papers" },
+            { title: "PDFPAL", description: "AI Chatbot Tool for Analyzing and Answering Questions for Any PDF" },
+            { title: "Portfolio Website", description: "The website you are currently on" }
           ].map((project, index) => (
             <motion.div
               key={index}
@@ -80,7 +80,7 @@ const ContentSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
       >
-        <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6">
+        <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6 text-center">
           CONTACT ME
         </h2>
         <motion.div 
@@ -93,15 +93,15 @@ const ContentSection = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-4">
               <span className="minecraft-text text-minecraft-grass">Email:</span>
-              <span className="text-white">developer@minecraft.com</span>
+              <span className="text-white">aaditya.jadhav2021@gmail.com</span>
             </div>
             <div className="flex items-center space-x-4">
               <span className="minecraft-text text-minecraft-grass">GitHub:</span>
-              <span className="text-white">@minecraft-dev</span>
+              <span className="text-white">https://github.com/aadityajadhav</span>
             </div>
             <div className="flex items-center space-x-4">
               <span className="minecraft-text text-minecraft-grass">LinkedIn:</span>
-              <span className="text-white">linkedin.com/in/minecraft-dev</span>
+              <span className="text-white">https://www.linkedin.com/in/aaditya-jadhav/</span>
             </div>
           </div>
         </motion.div>

@@ -85,6 +85,12 @@ export const MiningProvider = ({ children }) => {
         })
       }, delayIndex * 50) // 50ms delay between each block
     }
+    
+    // After all blocks are removed, show the cave background
+    setTimeout(() => {
+      // The cave background will be handled by the ContentSection component
+      // when caveUnlocked is true
+    }, maxBlocks * 50 + 500)
   }
 
   const resetMining = () => {

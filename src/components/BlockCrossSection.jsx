@@ -77,9 +77,49 @@ const BlockCrossSection = ({ side = 'left' }) => {
   }
   
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full relative">
+      {/* Bottom Layer - Deepslate blocks (always visible until cave unlock) */}
       <div 
-        className="grid w-full h-full"
+        className="grid w-full h-full absolute inset-0 pointer-events-none"
+        style={{
+          gridTemplateColumns: `repeat(${gridWidth}, 1fr)`,
+          gridTemplateRows: `repeat(${gridHeight}, 1fr)`,
+          gap: '0px',
+          width: '100%',
+          height: '100%'
+        }}
+      >
+        {Array.from({ length: gridWidth * gridHeight }, (_, index) => {
+          const isTopLayerMined = minedBlocks.has(`${side}-${index}`)
+          const shouldShowDeepslate = !caveUnlocked && isTopLayerMined
+          
+          return (
+            <div
+              key={`deepslate-${index}`}
+              className="w-full h-full"
+              style={{
+                width: '100%',
+                height: '100%',
+                margin: '0',
+                padding: '0',
+                opacity: shouldShowDeepslate ? 1 : 0,
+                transition: 'opacity 0.3s ease-in-out'
+              }}
+            >
+              <BlockTexture 
+                type="deepslate" 
+                isMined={false}
+                caveUnlocked={caveUnlocked}
+                size="w-full h-full"
+              />
+            </div>
+          )
+        })}
+      </div>
+      
+      {/* Top Layer - Regular blocks */}
+      <div 
+        className="grid w-full h-full relative z-10"
         style={{
           gridTemplateColumns: `repeat(${gridWidth}, 1fr)`,
           gridTemplateRows: `repeat(${gridHeight}, 1fr)`,

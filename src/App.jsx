@@ -17,7 +17,7 @@ const AppContent = () => {
       <Hero />
       
       {/* Main Content Area with Side Cross-Sections */}
-      <div className="flex relative">
+      <div className="flex relative min-h-screen">
         {/* Cave Background Image - Only appears after unlock and positioned behind block columns */}
         {caveUnlocked && (
           <div 
