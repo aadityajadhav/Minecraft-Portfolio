@@ -32,7 +32,7 @@ const Hero = () => {
             onError={handleVideoError}
             style={{ backgroundColor: '#000' }}
           >
-            <source src="/hero-background.mp4" type="video/mp4" />
+            <source src="./hero-background.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

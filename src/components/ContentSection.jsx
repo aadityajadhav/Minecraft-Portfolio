@@ -34,13 +34,13 @@ const ContentSection = () => {
           <div className="relative">
             {/* Item Frame */}
             <img 
-              src="/itemframe.png" 
+              src="./itemframe.png" 
               alt="Item Frame" 
               className="w-96 h-96 object-contain"
             />
             {/* Profile Picture - cropped and centered */}
             <img 
-              src="/profilepic.JPG" 
+              src="./profilepic.JPG" 
               alt="Aaditya Jadhav" 
               className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-60 h-60 object-cover rounded-sm"
               style={{ marginTop: '23px' }}
@@ -158,7 +158,7 @@ Outside of coding, you’ll often find me in the gym, making music, snowboarding
             <h3 className="minecraft-text text-2xl text-minecraft-grass mb-4 text-center">Email</h3>
             <div className="flex justify-center">
               <img 
-                src="/email.png" 
+                src="./email.png" 
                 alt="Email" 
                 className="w-24 h-24 object-contain"
               />
@@ -179,7 +179,7 @@ Outside of coding, you’ll often find me in the gym, making music, snowboarding
             <h3 className="minecraft-text text-2xl text-minecraft-grass mb-4 text-center">GitHub</h3>
             <div className="flex justify-center">
               <img 
-                src="/github.png" 
+                src="./github.png" 
                 alt="GitHub" 
                 className="w-24 h-24 object-contain"
               />
@@ -200,7 +200,7 @@ Outside of coding, you’ll often find me in the gym, making music, snowboarding
             <h3 className="minecraft-text text-2xl text-minecraft-grass mb-4 text-center">LinkedIn</h3>
             <div className="flex justify-center">
               <img 
-                src="/linkedin.png" 
+                src="./linkedin.png" 
                 alt="LinkedIn" 
                 className="w-24 h-24 object-contain"
               />

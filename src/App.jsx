@@ -23,7 +23,7 @@ const AppContent = () => {
           <div 
             className="absolute inset-0 z-0 pointer-events-none"
             style={{
-              backgroundImage: "url('/cave.png')",
+              backgroundImage: "url('./cave.png')",
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
