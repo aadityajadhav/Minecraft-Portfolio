@@ -7,7 +7,7 @@ const ContentSection = () => {
   
   return (
     <motion.div 
-      className="min-h-screen p-8"
+      className="p-8 h-full"
       style={{
         backgroundColor: caveUnlocked ? 'transparent' : '#2F2F2F',
         transition: 'background-color 1s ease-in-out'
@@ -23,6 +23,30 @@ const ContentSection = () => {
         <h2 className="minecraft-text text-4xl text-minecraft-grass mb-6 text-center">
           ABOUT ME
         </h2>
+        
+        {/* Item Frame with Profile Picture */}
+        <motion.div 
+          className="flex justify-center mb-6"
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="relative">
+            {/* Item Frame */}
+            <img 
+              src="/itemframe.png" 
+              alt="Item Frame" 
+              className="w-80 h-80 object-contain"
+            />
+            {/* Profile Picture - cropped and centered */}
+            <img 
+              src="/profilepic.JPG" 
+              alt="Aaditya Jadhav" 
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 object-cover rounded-sm"
+            />
+          </div>
+        </motion.div>
+        
         <motion.div 
           className="p-6 rounded-lg border-2 border-gray-800"
           style={{
@@ -31,9 +55,9 @@ const ContentSection = () => {
           }}
         >
           <p className="text-lg text-white leading-relaxed">
-            I'm a passionate developer who loves creating interactive experiences. 
-            When I'm not coding, you can find me exploring virtual worlds and 
-            building pixelated adventures.
+          Hello! I’m Aaditya Jadhav, a recent graduate from the University of California, Santa Cruz, where I earned my B.S. in Computer Science. Over the past few years, I’ve gained experience through internships at Machinify and Keysight Technologies, as well as projects like EcoMind, PDFPAL, and StimStudy. My interests lie at the intersection of software engineering, artificial intelligence, and creative design—whether that means building full-stack applications, working on ML-driven systems, or crafting unique digital experiences like this Minecraft-themed portfolio.
+
+Outside of coding, you’ll often find me in the gym, making music, snowboarding, or gaming with friends. Feel free to explore (try mining) the rest of my portfolio to learn more about my work! 
           </p>
         </motion.div>
       </motion.section>

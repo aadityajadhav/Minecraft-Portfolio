@@ -39,7 +39,7 @@ export const MiningProvider = ({ children }) => {
     const remainingLeftBlocks = []
     const remainingRightBlocks = []
     
-    for (let i = 0; i < 200; i++) { // 10x20 grid = 200 blocks
+    for (let i = 0; i < 350; i++) { // 10x35 grid = 350 blocks
       if (!minedBlocks.has(`left-${i}`)) {
         remainingLeftBlocks.push(i)
       }
@@ -48,13 +48,19 @@ export const MiningProvider = ({ children }) => {
       }
     }
     
-    // Sort both arrays by row (descending) and then by column
+    // Sort blocks to disappear from bottom to top in ascending order
     const gridWidth = 10
     const sortBlocks = (blocks) => {
       return blocks.sort((a, b) => {
         const rowA = Math.floor(a / gridWidth)
         const rowB = Math.floor(b / gridWidth)
-        if (rowB !== rowA) return rowB - rowA
+        
+        // Primary sort: by row (ascending - bottom first)
+        if (rowA !== rowB) {
+          return rowA - rowB
+        }
+        
+        // Secondary sort: by column (left to right)
         return (a % gridWidth) - (b % gridWidth)
       })
     }
@@ -83,14 +89,14 @@ export const MiningProvider = ({ children }) => {
           
           return newSet
         })
-      }, delayIndex * 50) // 50ms delay between each block
+      }, delayIndex * 20) // 20ms delay between each block
     }
     
     // After all blocks are removed, show the cave background
     setTimeout(() => {
       // The cave background will be handled by the ContentSection component
       // when caveUnlocked is true
-    }, maxBlocks * 50 + 500)
+    }, maxBlocks * 20 + 500)
   }
 
   const resetMining = () => {

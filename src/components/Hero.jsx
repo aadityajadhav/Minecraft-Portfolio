@@ -48,8 +48,8 @@ const Hero = () => {
         <h1 className="minecraft-text text-6xl text-white mb-4 text-center drop-shadow-2xl">
           Aaditya Jadhav
         </h1>
-        <p className="minecraft-text text-xl text-minecraft-grass text-center max-w-2xl px-4 drop-shadow-lg">
-          Welcome to my World of Creativity & Code
+        <p className="minecraft-text text-xl text-minecraft-grass text-center max-w-2xl px-4 drop-shadow-lg mt-8">
+          Creator. Coder. Builder.
         </p>
       </div>
     </div>

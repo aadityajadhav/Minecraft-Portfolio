@@ -6,9 +6,9 @@ import { useMining } from '../contexts/MiningContext'
 const BlockCrossSection = ({ side = 'left' }) => {
   const { oreCount, caveUnlocked, addOre, minedBlocks, setMinedBlocks } = useMining()
   
-  // Grid configuration - 10x20 blocks
+  // Grid configuration - 10x35 blocks (increased height to reach bottom of longer pages)
   const gridWidth = 10
-  const gridHeight = 20
+  const gridHeight = 35
   
   // Block types with weights for randomization (reduced ore chances to 5-10%)
   const blockTypes = [
@@ -77,16 +77,19 @@ const BlockCrossSection = ({ side = 'left' }) => {
   }
   
   return (
-    <div className="h-full w-full relative">
+    <div className="h-full w-full relative flex items-center justify-center">
       {/* Bottom Layer - Deepslate blocks (always visible until cave unlock) */}
       <div 
-        className="grid w-full h-full absolute inset-0 pointer-events-none"
+        className="grid absolute inset-0 pointer-events-none"
         style={{
           gridTemplateColumns: `repeat(${gridWidth}, 1fr)`,
           gridTemplateRows: `repeat(${gridHeight}, 1fr)`,
           gap: '0px',
           width: '100%',
-          height: '100%'
+          height: '100%',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          aspectRatio: `${gridWidth}/${gridHeight}`
         }}
       >
         {Array.from({ length: gridWidth * gridHeight }, (_, index) => {
@@ -103,7 +106,11 @@ const BlockCrossSection = ({ side = 'left' }) => {
                 margin: '0',
                 padding: '0',
                 opacity: shouldShowDeepslate ? 1 : 0,
-                transition: 'opacity 0.3s ease-in-out'
+                transition: 'opacity 0.3s ease-in-out',
+                overflow: 'hidden',
+                boxSizing: 'border-box',
+                filter: 'brightness(0.6) contrast(1.1) saturate(0.9)',
+                transform: 'translateZ(-1px)'
               }}
             >
               <BlockTexture 
@@ -119,13 +126,16 @@ const BlockCrossSection = ({ side = 'left' }) => {
       
       {/* Top Layer - Regular blocks */}
       <div 
-        className="grid w-full h-full relative z-10"
+        className="grid relative z-10"
         style={{
           gridTemplateColumns: `repeat(${gridWidth}, 1fr)`,
           gridTemplateRows: `repeat(${gridHeight}, 1fr)`,
           gap: '0px',
           width: '100%',
-          height: '100%'
+          height: '100%',
+          maxWidth: '100%',
+          maxHeight: '100%',
+          aspectRatio: `${gridWidth}/${gridHeight}`
         }}
       >
         {blockGrid.map((block, index) => {
@@ -139,11 +149,13 @@ const BlockCrossSection = ({ side = 'left' }) => {
                 width: '100%',
                 height: '100%',
                 margin: '0',
-                padding: '0'
+                padding: '0',
+                overflow: 'hidden',
+                boxSizing: 'border-box'
               }}
               onClick={() => handleBlockClick(index)}
-              whileHover={{ scale: isMined ? 1 : 1.1 }}
-              whileTap={{ scale: isMined ? 1 : 0.9 }}
+              whileHover={{ scale: isMined ? 1 : 1.05 }}
+              whileTap={{ scale: isMined ? 1 : 0.95 }}
               initial={{ opacity: 1, scale: 1 }}
               animate={isMined ? { opacity: 0, scale: 0.95 } : { opacity: 1, scale: 1 }}
             >

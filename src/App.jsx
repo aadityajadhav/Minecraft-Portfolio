@@ -17,7 +17,7 @@ const AppContent = () => {
       <Hero />
       
       {/* Main Content Area with Side Cross-Sections */}
-      <div className="flex relative min-h-screen">
+      <div className="flex relative">
         {/* Cave Background Image - Only appears after unlock and positioned behind block columns */}
         {caveUnlocked && (
           <div 
@@ -33,17 +33,17 @@ const AppContent = () => {
         )}
         
         {/* Left Cross-Section */}
-        <div className="w-1/4 min-h-screen relative z-10">
+        <div className="w-1/4 relative z-10" style={{ minHeight: '100vh' }}>
           <BlockCrossSection side="left" />
         </div>
         
         {/* Main Content Column */}
-        <div className="w-2/4 min-h-screen relative z-10">
+        <div className="w-2/4 relative z-10" style={{ minHeight: '100vh' }}>
           <ContentSection />
         </div>
         
         {/* Right Cross-Section */}
-        <div className="w-1/4 min-h-screen relative z-10">
+        <div className="w-1/4 relative z-10" style={{ minHeight: '100vh' }}>
           <BlockCrossSection side="right" />
         </div>
       </div>
