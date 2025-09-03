@@ -1,0 +1,9 @@
+This folder contains public assets for your Minecraft portfolio.
+
+TO ADD YOUR HERO BACKGROUND:
+1. Take a screenshot from your Minecraft world (overworld scene)
+2. Save it as "hero-background.png" in this folder
+3. Recommended size: 1920x1080 or larger
+4. The image will automatically appear as the hero background
+
+The app will show a fallback gradient until you add your image.
